@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Newsreader';
+  src: url('./fonts/newsreader-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/manrope-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/ibm-plex-mono-400-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/ibm-plex-mono-500-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f6f5f1;
+  --paper-deep: #efeee9;
+  --ink: #202321;
+  --ink-soft: #353936;
+  --muted: #878a82;
+  --sage: #a7b59a;
+  --sage-deep: #79866e;
+  --sage-pale: #e5e9df;
+  --border: #deded7;
+  --border-dark: rgb(246 245 241 / 24%);
+  --font-serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Times New Roman', serif;
+  --font-sans: 'Manrope', 'Avenir Next', Avenir, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', 'Cascadia Code', 'Courier New', monospace;
+  --gutter: clamp(1.25rem, 4.1vw, 4.25rem);
+  --content-max: 96rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --rule: 1px solid var(--border);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 420ms;
+  --duration-slow: 720ms;
+  color-scheme: light;
+}

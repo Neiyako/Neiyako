@@ -1,0 +1,56 @@
+.scene-canvas,
+.scene-fallback {
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+.scene-frame.is-ready .scene-canvas,
+.scene-frame[data-scene-ready='true'] .scene-canvas,
+.scene-frame[data-scene-state='ready'] .scene-canvas,
+.scene-frame:has(.scene-canvas[data-scene-ready='true']) .scene-canvas,
+.scene-frame:has(.scene-canvas[data-ready='true']) .scene-canvas,
+.scene-canvas[data-scene-ready='true'],
+.scene-canvas[data-ready='true'] {
+  opacity: 1;
+}
+
+.scene-frame.is-ready .scene-fallback,
+.scene-frame[data-scene-ready='true'] .scene-fallback,
+.scene-frame[data-scene-state='ready'] .scene-fallback,
+.scene-frame:has(.scene-canvas[data-scene-ready='true']) .scene-fallback,
+.scene-frame:has(.scene-canvas[data-ready='true']) .scene-fallback {
+  opacity: 0;
+}
+
+html[data-scenes='fallback'] .scene-canvas {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-figure,
+  .scene-frame {
+    transition: border-color var(--duration-base) var(--ease-out);
+  }
+
+  .project:hover .project-figure {
+    border-color: var(--sage-deep);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scene-canvas {
+    transition: none;
+  }
+}
