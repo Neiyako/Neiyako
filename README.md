@@ -22,19 +22,19 @@ The working home for multi-source research data acquisition and synchronization 
 
 `Scientific computing` · [Repository](https://github.com/Neiyako/HydroWeave)
 
-A scientific data-processing and experimental-engineering ecosystem, organized around data management, analysis workflows, and reproducible experiments. HydroWeave is the broader research environment; HydroWeave-DBAS is its distinct data-management and analysis application.
+A Tibetan Plateau cloud-water experiment system built around proxy indicators, a GCWR water-budget model, three-layer error analysis, reproducible runs, and scientific figures. HydroWeave-DBAS is a separate data-management system rather than another analysis layer inside this repository.
 
 ### 03 / HydroWeave-DBAS
 
 `Data systems` · [Repository](https://github.com/Neiyako/HydroWeave-DBAS)
 
-A data-management and analysis system for scientific research workflows. Design themes include data governance, processing pipelines, exploratory data analysis, experiment management, error analysis, and reproducible results.
+A local data-asset system for ERA5 and NetCDF volumes: cataloging, readability checks, SHA-256 verification, online backup, resumable task orchestration, and a query-aware Zarr layer. The repository explicitly keeps experiment analysis and plotting out of scope.
 
 ### 04 / MCMtools
 
 `Modeling toolchain` · [Repository](https://github.com/Neiyako/MCMtools)
 
-MCMtools is a Python-based mathematical-modeling toolchain oriented toward templates, statistical analysis, optimization, visualization, and research-paper workflows. Treat its scope as active tooling rather than a completed roadmap.
+MCMtools is a local-first Python toolchain for mathematical-modeling competitions. Its working scope covers structured project state, experiment runs, reusable figure and table generation, paper builds, and a consistency audit that runs before compilation. The roadmap remains separate from what is implemented.
 
 ---
 
@@ -44,23 +44,23 @@ The descriptions below are working directions, not proficiency ratings. They dis
 
 **01 / AI Engineering**
 
-Applied agent systems, evaluation, and reproducible model workflows.
+Status: developing practice. Agent systems, orchestration, and tool-using workflows.
 
 **02 / Automation**
 
-Control-facing software, instrumentation, and the design of dependable automated processes.
+Status: project evidence. Multi-source acquisition, resumable tasks, integrity checks, and task orchestration.
 
 **03 / Scientific Computing**
 
-Data pipelines, numerical analysis, and tooling for climate and water-resource research.
+Status: project evidence. Cloud-water modeling, ERA5/NetCDF data systems, verification, and reproducible analysis.
 
 **04 / Embedded Systems**
 
-Microcontroller and FPGA work where computation meets the physical world.
+Status: developing practice. Control, embedded systems, FPGA study, and edge intelligence; not a production-experience claim.
 
 **05 / Software Engineering**
 
-Small, legible systems with explicit interfaces, useful tests, and maintainable boundaries.
+Status: project evidence. Modular boundaries, tests, CI, documentation, and auditable delivery in public repositories.
 
 ---
 

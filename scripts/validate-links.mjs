@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -116,6 +116,38 @@ function extractLinks(filePath, content) {
   return links;
 }
 
+async function checkRepositoryRelativeLinks() {
+  const entries = await readdir(ROOT, { withFileTypes: true });
+  const markdownFiles = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => path.join(ROOT, entry.name))
+    .sort();
+  const failures = [];
+
+  for (const filePath of markdownFiles) {
+    const content = stripMarkdownCode(await readFile(filePath, 'utf8'));
+
+    for (const match of content.matchAll(markdownLinkPattern)) {
+      const candidate = match[1] ?? match[2];
+      if (!candidate || /^(?:#|https?:\/\/|mailto:|tel:|data:)/i.test(candidate)) {
+        continue;
+      }
+
+      const relativePath = decodeURIComponent(candidate.split(/[?#]/, 1)[0]);
+      if (!relativePath) continue;
+
+      const resolvedPath = path.resolve(path.dirname(filePath), relativePath);
+      try {
+        await stat(resolvedPath);
+      } catch {
+        failures.push(`${path.relative(ROOT, filePath)} -> ${candidate}`);
+      }
+    }
+  }
+
+  return failures;
+}
+
 async function requestStatus(url, method) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -220,6 +252,7 @@ async function checkUrl(url) {
 async function main() {
   const files = await collectTargetFiles();
   const links = new Map();
+  const localLinkFailures = await checkRepositoryRelativeLinks();
 
   for (const filePath of files) {
     let content;
@@ -251,7 +284,7 @@ async function main() {
   }
 
   const urls = [...links.keys()].sort();
-  console.log(`Checking ${urls.length} external link${urls.length === 1 ? '' : 's'} from README and source content.`);
+  console.log(`Checking ${urls.length} external link${urls.length === 1 ? '' : 's'} and repository-relative Markdown links.`);
 
   const results = await Promise.all(
     urls.map(async (url) => {
@@ -282,13 +315,20 @@ async function main() {
     }
   }
 
-  if (brokenCount > 0) {
-    console.error(`\n${brokenCount} broken external link${brokenCount === 1 ? '' : 's'} found.`);
+  if (localLinkFailures.length > 0) {
+    for (const failure of localLinkFailures) {
+      console.log(`  FAIL  missing repository path  ${failure}`);
+    }
+  }
+
+  const totalBroken = brokenCount + localLinkFailures.length;
+  if (totalBroken > 0) {
+    console.error(`\n${totalBroken} broken link${totalBroken === 1 ? '' : 's'} found.`);
     process.exitCode = 1;
     return;
   }
 
-  console.log('\nAll external links passed.');
+  console.log('\nAll external and repository-relative Markdown links passed.');
 }
 
 main().catch((error) => {

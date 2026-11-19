@@ -131,7 +131,7 @@ a {
 }
 
 .eyebrow {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: clamp(0.63rem, 0.58rem + 0.14vw, 0.72rem);
   font-weight: 500;
@@ -148,7 +148,7 @@ a {
   display: flex;
   gap: 1rem;
   align-items: baseline;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
@@ -164,7 +164,7 @@ a {
 .section-heading__main > p {
   max-width: 37rem;
   margin-top: 1.25rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: clamp(0.95rem, 0.89rem + 0.22vw, 1.12rem);
   line-height: 1.65;
 }

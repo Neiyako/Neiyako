@@ -3,10 +3,7 @@ import type {
   SceneController,
   SceneInitializer,
 } from './contracts';
-import { createFlowScene } from './flow';
-import { createKineticScene } from './kinetic';
-import { createStructureScene } from './structure';
-import { hasWebGPUSupport } from './runtime';
+import { hasWebGPUSupport } from './webgpu-support';
 
 const SCENE_SELECTOR =
   '[data-scene="kinetic"], [data-scene="flow"], [data-scene="structure"]';
@@ -14,9 +11,18 @@ const SCENE_SELECTOR =
 type SceneName = 'kinetic' | 'flow' | 'structure';
 
 const SCENE_INITIALIZERS: Record<SceneName, SceneInitializer> = {
-  kinetic: createKineticScene,
-  flow: createFlowScene,
-  structure: createStructureScene,
+  kinetic: async (canvas, options) => {
+    const { createKineticScene } = await import('./kinetic');
+    return createKineticScene(canvas, options);
+  },
+  flow: async (canvas, options) => {
+    const { createFlowScene } = await import('./flow');
+    return createFlowScene(canvas, options);
+  },
+  structure: async (canvas, options) => {
+    const { createStructureScene } = await import('./structure');
+    return createStructureScene(canvas, options);
+  },
 };
 
 interface SceneRecord {

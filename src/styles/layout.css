@@ -34,7 +34,7 @@
   display: flex;
   gap: clamp(1rem, 2.2vw, 2.4rem);
   align-items: center;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.59rem;
   font-weight: 500;
@@ -156,7 +156,7 @@
   justify-content: space-between;
   padding-block: 0.7rem 0.9rem;
   border-bottom: var(--rule);
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.61rem;
   font-weight: 500;
@@ -333,7 +333,7 @@
 }
 
 .notes-aside {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.67rem;
   letter-spacing: 0.035em;
@@ -507,12 +507,14 @@
   .site-nav {
     position: absolute;
     top: 100%;
-    right: calc(var(--gutter) * -1);
-    left: calc(var(--gutter) * -1);
+    right: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
     align-items: stretch;
+    justify-self: stretch;
+    width: auto;
     padding: 1.3rem var(--gutter) 1.6rem;
     border-bottom: 1px solid var(--ink);
     background: var(--paper);

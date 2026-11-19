@@ -28,7 +28,7 @@
   z-index: 4;
   right: 0.85rem;
   bottom: 0.75rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.53rem;
   letter-spacing: 0.06em;
@@ -47,7 +47,7 @@
   justify-content: space-between;
   padding-block: 0.7rem;
   border-bottom: 1px solid var(--ink);
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.055em;
@@ -304,7 +304,7 @@
 .fallback-coordinate {
   position: absolute;
   z-index: 5;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.51rem;
   letter-spacing: 0.06em;
@@ -374,7 +374,7 @@
   flex-wrap: wrap;
   gap: 0.65rem 1.1rem;
   align-items: baseline;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.61rem;
   letter-spacing: 0.045em;
@@ -426,7 +426,7 @@
 
 .project-fact dt {
   margin-bottom: 0.55rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.59rem;
   font-weight: 500;
@@ -465,7 +465,7 @@
   margin-top: 1.2rem;
   padding-left: 0.9rem;
   border-left: 2px solid var(--sage);
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.78rem;
   line-height: 1.55;
 }
@@ -483,7 +483,7 @@
 }
 
 .text-link--secondary {
-  color: var(--muted);
+  color: var(--muted-ink);
 }
 
 .project-figure {
@@ -698,7 +698,7 @@
 }
 
 .practice-legend > div > :last-child {
-  color: var(--muted);
+  color: var(--muted-ink);
   text-transform: none;
 }
 
@@ -735,7 +735,7 @@
 
 .practice-number {
   padding-top: 0.38rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.63rem;
   letter-spacing: 0.05em;
@@ -774,7 +774,7 @@
 }
 
 .practice-state--developing {
-  color: var(--muted);
+  color: var(--muted-ink);
 }
 
 .practice-state--developing::before {
@@ -820,7 +820,7 @@
 
 .principle-number {
   padding-top: 0.5rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.61rem;
   letter-spacing: 0.045em;
@@ -837,7 +837,7 @@
 .principle-copy p {
   max-width: 27rem;
   margin-top: 1rem;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.92rem;
   line-height: 1.65;
 }
@@ -866,7 +866,7 @@
 }
 
 .interest-number {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 500;

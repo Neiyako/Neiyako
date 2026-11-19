@@ -6,7 +6,9 @@ export default defineConfig({
   base,
   build: {
     target: 'es2022',
-    sourcemap: true,
+    sourcemap: false,
+    // The Three.js WebGPU runtime is a known, lazy-loaded vendor chunk.
+    chunkSizeWarningLimit: 900,
   },
   test: {
     environment: 'node',

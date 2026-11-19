@@ -72,12 +72,12 @@ export const projects: readonly Project[] = [
     number: '03',
     name: 'HydroWeave-DBAS',
     description:
-      'A scientific data management and analysis system for ERA5 and NetCDF workflows, from cataloging through query-ready delivery.',
-    classification: 'Data infrastructure / scientific workflows',
+      'A local scientific data asset system for cataloging, verifying, preserving, and querying ERA5 and NetCDF volumes.',
+    classification: 'Scientific data management / orchestration',
     evidence: [
       'ERA5 / NetCDF cataloging',
-      'Checksums and verification',
-      'Backup and task queue',
+      'Readability checks and SHA-256 verification',
+      'Online backup and resumable task queue',
       'Query-aware Zarr layer',
     ],
     repositoryUrl: 'https://github.com/Neiyako/HydroWeave-DBAS',
@@ -88,19 +88,17 @@ export const projects: readonly Project[] = [
     number: '04',
     name: 'MCMtools',
     description:
-      'A Python mathematical-modeling toolchain for regression and statistics workflows, with a modular roadmap kept distinct from implemented scope.',
-    classification: 'Mathematical modeling / Python tooling',
+      'A local-first Python toolchain for mathematical-modeling experiments, paper assets, and pre-build consistency checks.',
+    classification: 'Mathematical modeling / local-first workflow',
     evidence: [
-      'Python regression and statistics workflow',
-      'Tables and figures',
-      'Modular planned roadmap',
-      'Current implemented scope stated explicitly',
+      'Structured project and experiment records',
+      'Python experiment workflow',
+      'Figure, table, and paper tooling',
+      'Pre-build consistency audit',
     ],
-    repositoryUrl: 'https://github.com/Neiyako/models-response',
-    repositoryLabel: 'models-response',
-    secondaryUrl: 'https://github.com/Neiyako/MCMtools',
-    secondaryLabel: 'MCMtools on GitHub',
-    scopeNote: 'The roadmap is planned in modules; only the current repository scope is presented as implemented.',
+    repositoryUrl: 'https://github.com/Neiyako/MCMtools',
+    repositoryLabel: 'MCMtools',
+    scopeNote: 'Current scope is presented as implemented; the project roadmap remains a separate planning surface.',
     visual: 'mcmtools',
   },
 ] as const;
@@ -118,7 +116,7 @@ export const practiceAreas: readonly PracticeArea[] = [
     name: 'Automation',
     state: 'applied',
     detail:
-      'Project evidence in multi-source acquisition, resumable tasks, integrity checks, and task queues across data workflows.',
+      'Project evidence in multi-source acquisition, resumable tasks, integrity checks, and task orchestration across data workflows.',
   },
   {
     number: '03',
@@ -132,7 +130,7 @@ export const practiceAreas: readonly PracticeArea[] = [
     name: 'Embedded Systems',
     state: 'developing',
     detail:
-      'Developing practice focused on edge intelligence and embedded AI; exploratory work rather than production experience.',
+      'Developing systems knowledge at the edge through control, embedded, and FPGA study; presented as an interest, not a production claim.',
   },
   {
     number: '05',

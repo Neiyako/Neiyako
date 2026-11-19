@@ -4,6 +4,7 @@ import type {
   SceneController,
   SceneOptions,
 } from './contracts';
+import { hasWebGPUSupport } from './webgpu-support';
 
 export interface SceneContent {
   scene: THREE.Scene;
@@ -18,12 +19,6 @@ export type SceneContentFactory = (
   options: SceneOptions,
 ) => SceneContent;
 
-interface WebGPUAdapter {
-  requestAdapter(options?: {
-    powerPreference?: 'low-power' | 'high-performance';
-  }): Promise<unknown | null>;
-}
-
 interface RendererInternals {
   _getFallback: unknown;
 }
@@ -34,26 +29,6 @@ interface BackendIdentity {
 
 const CANVAS_WIDTH_FALLBACK = 1;
 const CANVAS_HEIGHT_FALLBACK = 1;
-
-/**
- * Checks for a usable WebGPU adapter before any renderer is constructed. This
- * prevents Three.js from silently choosing its WebGL fallback backend.
- */
-export async function hasWebGPUSupport(): Promise<boolean> {
-  if (typeof navigator === 'undefined') return false;
-
-  const gpu = (navigator as Navigator & { gpu?: WebGPUAdapter }).gpu;
-  if (!gpu) return false;
-
-  try {
-    const adapter = await gpu.requestAdapter({
-      powerPreference: 'high-performance',
-    });
-    return adapter !== null;
-  } catch {
-    return false;
-  }
-}
 
 /**
  * Shared WebGPU scene runtime. It owns one renderer per mounted canvas, but the

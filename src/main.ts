@@ -130,13 +130,20 @@ function onMotionPreferenceChange(): void {
 initializeScenes();
 reducedMotionQuery.addEventListener('change', onMotionPreferenceChange);
 
+let pageTeardownComplete = false;
+
 window.addEventListener(
   'pagehide',
-  () => {
+  (event) => {
+    // Keep the document intact when it enters the back-forward cache. The
+    // visibility handler pauses active scenes, and a later non-persisted
+    // pagehide event performs the real teardown.
+    if (event.persisted || pageTeardownComplete) return;
+
+    pageTeardownComplete = true;
     cancelAnimationFrame(sceneReloadFrame);
     reducedMotionQuery.removeEventListener('change', onMotionPreferenceChange);
     teardownScenes?.();
     teardownNavigation();
   },
-  { once: true },
 );

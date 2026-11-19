@@ -146,6 +146,47 @@ test.describe('responsive integrity', () => {
   }
 });
 
+test.describe('Three.js scene lifecycle', () => {
+  test('all WebGPU scenes initialize on entry and recover after a preference remount', async ({ page }) => {
+    const issues = watchRuntimeIssues(page);
+
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    const webGPUSupported = await page.evaluate(async () => {
+      const gpu = (navigator as Navigator & {
+        gpu?: { requestAdapter(): Promise<unknown | null> };
+      }).gpu;
+
+      return Boolean(gpu && (await gpu.requestAdapter()));
+    });
+    test.skip(!webGPUSupported, 'This browser does not expose a WebGPU adapter.');
+
+    for (const sceneName of ['kinetic', 'flow', 'structure'] as const) {
+      const frame = page.locator(`[data-scene-frame="${sceneName}"]`);
+      await frame.scrollIntoViewIfNeeded();
+      await expect(frame).toHaveAttribute('data-scene-state', 'ready', { timeout: 30_000 });
+    }
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect
+      .poll(() =>
+        page
+          .locator('[data-scene-state]')
+          .evaluateAll((nodes) => nodes.every((node) => node.getAttribute('data-scene-state') === 'fallback')),
+      )
+      .toBe(true);
+
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const kineticFrame = page.locator('[data-scene-frame="kinetic"]');
+    await kineticFrame.scrollIntoViewIfNeeded();
+    await expect(kineticFrame).toHaveAttribute('data-scene-state', 'ready', { timeout: 30_000 });
+
+    expect(issues.consoleErrors, 'Unexpected browser console errors.').toEqual([]);
+    expect(issues.pageErrors, 'Uncaught page errors.').toEqual([]);
+  });
+});
+
 test.describe('accessibility behavior', () => {
   test('primary navigation links are reachable and operable by keyboard', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
