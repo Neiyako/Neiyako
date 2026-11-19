@@ -6,7 +6,7 @@
 
 I build practical systems where automation, artificial intelligence, and scientific computing meet. My work favors clear interfaces, traceable data, and results that another engineer can inspect and rebuild.
 
-[GitHub](https://github.com/Neiyako) · [Interactive source](./index.html) · [Deployment notes](./DEPLOYMENT.md) · 2026
+[GitHub](https://github.com/Neiyako) · [Interactive edition](https://neiyako.github.io/Neiyako/) · [Source](./index.html) · [Deployment notes](./DEPLOYMENT.md) · 2026
 
 ---
 
@@ -106,11 +106,11 @@ For project-specific questions, open an issue in the relevant repository so the 
 
 The interactive edition is a Three.js engineering notebook in this repository. The deployable source begins at [index.html](./index.html).
 
-The intended public address is `https://neiyako.github.io/Neiyako/`. It is deliberately not linked as live: the repository does not yet exist under the expected name, and GitHub Pages must be enabled with a successful Actions deployment before that address can be verified. After enabling Pages, follow [DEPLOYMENT.md](./DEPLOYMENT.md), verify the URL and asset paths, and only then replace the code-formatted address above with a live link.
+The live edition is a Three.js engineering notebook built with Vite, TypeScript, and the WebGPU renderer. The production build is published through GitHub Actions at [neiyako.github.io/Neiyako](https://neiyako.github.io/Neiyako/). Deployment details and repeatable verification steps remain in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 | Surface | Status |
 | --- | --- |
-| Interactive edition | Pending manual Pages activation and a verified first deployment |
+| Interactive edition | [Live](https://neiyako.github.io/Neiyako/) and verified at desktop and mobile widths |
 | Deployment runbook | Available in [DEPLOYMENT.md](./DEPLOYMENT.md) |
 
 ---
